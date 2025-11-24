@@ -1,0 +1,14 @@
+[project]
+name = "evolutionary-algorithms"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "click>=8.2.1",
+    "mujoco>=3.3.7",
+    "numpy>=2.3.5",
+    "ray[default]>=2.52.0",
+]
+
+
+[project.urls]
+Source = "https://github.com/facebookresearch/large_concept_model"
