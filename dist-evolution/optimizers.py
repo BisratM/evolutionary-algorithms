@@ -3,7 +3,7 @@
 import numpy as np
 
 
-class Optimizer(object):
+class Optimizer:
     """Base class for parameter optimization algorithms."""
 
     def __init__(self, pi):
