@@ -20,15 +20,65 @@ target-version = "py313"
 
 [tool.ruff.lint]
 select = [
-    "E",  # pycodestyle errors
-    "W",  # pycodestyle warnings
-    "F",  # pyflakes
-    "I",  # isort
-    "C",  # flake8-comprehensions
-    "B",  # flake8-bugbear
-    "D",  # flake8-docstrings
+    "E", "W",  # pycodestyle
+    "F",       # pyflakes
+    "I",       # isort
+    "N",       # pep8-naming
+    "UP",      # pyupgrade
+    "S",       # flake8-bandit
+    "BLE",     # flake8-blind-except
+    "B",       # flake8-bugbear
+    "COM",     # flake8-commas
+    "C4",      # flake8-comprehensions
+    "EXE",     # flake8-executable
+    "FA",      # flake8-future-annotations
+    "ISC",     # flake8-implicit-str-concat
+    "LOG",     # flake8-logging
+    "PIE",     # flake8-pie
+    "PYI",     # flake8-pyi
+    "Q",       # flake8-quotes
+    "RSE",     # flake8-raise
+    "SIM",     # flake8-simplify
+    "TID",     # flake8-tidy-imports
+    "TC",      # flake8-type-checking
+    "PERF",    # perflint
+    "FURB",    # refurb
+    "TRY",     # tryceratops
+    "RUF",     # ruff
+    "ASYNC",   # flake8-async
 ]
-
 [tool.ruff.lint.mccabe]
 # Unlike Flake8, default to a complexity level of 10.
 max-complexity = 8
+
+[tool.pyrefly]
+# Python environment
+python-version = "3.13.0"
+python-platform = "linux"
+
+# File selection - check all Python files
+project-includes = ["**/*.py"]
+project-excludes = [
+    "**/.venv/**",
+    "**/venv/**",
+    "**/__pycache__",
+    "**/.pytest_cache",
+    "**/*.egg-info",
+    "**/.ruff_cache",
+]
+
+# Respect .gitignore for automatic exclusions
+use-ignore-files = true
+
+# Strict type checking behavior
+untyped-def-behavior = "check-and-infer-return-type"
+infer-with-first-use = false
+permissive-ignores = false
+
+# Import resolution (auto-detected from .venv)
+search-path = ["."]
+
+[dependency-groups]
+dev = [
+    "pyrefly>=0.43.1",
+]
