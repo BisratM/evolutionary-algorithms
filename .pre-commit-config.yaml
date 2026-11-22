@@ -3,10 +3,16 @@ repos:
     hooks:
       - id: trufflehog
         name: TruffleHog
-        description: Detect secrets in your data. It is run with --no-update to get around some strange permission issues with trufflehog.
-        entry: bash -c 'trufflehog git file://. --since-commit HEAD --fail --no-update'
+        description: Detect secrets in staged files.
+        entry: bash -c 'git diff --cached --name-only | xargs -r trufflehog filesystem --fail --results=verified,unverified --no-update'
         language: system
-        stages: ["pre-commit", "pre-push"]
+        stages: ["pre-commit"]
+      - id: trufflehog-prepush
+        name: TruffleHog (pre-push)
+        description: Detect secrets in commits before push.
+        entry: bash -c 'trufflehog git file://. --branch HEAD --since-commit $(git rev-parse @{push}) --fail --results=verified,unverified --no-update'
+        language: system
+        stages: ["pre-push"]
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.14.6
     hooks:
